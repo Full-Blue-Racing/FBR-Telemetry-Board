@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Telemetry")(type "KiCad")(uri "${KIPRJMOD}/libs/Telemetry.pretty")(options "")(descr ""))
+  (lib (name "Connector_DT")(type "KiCad")(uri "${KIPRJMOD}/libs/Connector_DT.pretty")(options "")(descr ""))
+)

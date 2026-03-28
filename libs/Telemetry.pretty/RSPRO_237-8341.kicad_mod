@@ -1,0 +1,157 @@
+(footprint "RSPRO_237-8341"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at -12.38 -12.7 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "ad5b00f5-0c53-402b-843a-be95d6b9593e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "RSPRO_237-8341"
+		(at -12.38 12.7 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "b8804fa3-c7aa-456b-ae92-487e89177f99")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "154a57da-33cd-492d-9084-1b05874c5b2b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "46ff1f5b-5e45-4f09-97fb-05ac8b113a2f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -22.772 -3.8)
+		(end -22.772 3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "ac7802ce-a6cf-4274-94f6-445f83905621")
+	)
+	(fp_line
+		(start -1.808 -3.8)
+		(end 1.228 -3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "fb909a38-cb48-40a7-a5a0-d3ddffe8c986")
+	)
+	(fp_line
+		(start 1.228 3.8)
+		(end -1.808 3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "7c7507d4-1cfb-47c6-b063-b676f62bb061")
+	)
+	(fp_line
+		(start 1.228 3.8)
+		(end 1.228 -3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "7636b18e-7dd3-403a-ad74-c9bcb213c990")
+	)
+	(fp_arc
+		(start -22.772 -3.8)
+		(mid -12.29 -11.149668)
+		(end -1.808 -3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "e7b94668-eafc-4a08-8e8d-a8d165483766")
+	)
+	(fp_arc
+		(start -1.808 3.8)
+		(mid -12.29 11.149668)
+		(end -22.772 3.8)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "c216c3cd-e09d-4bb9-a6f1-b1dea163a356")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -12.38 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "aa4d1e38-3d06-47e5-82a7-b14d8c393d8b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 1.524 1.524)
+		(drill 0.762)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "cead6548-9bb8-41e9-b842-4a03bd06052a")
+	)
+	(pad "2" thru_hole circle
+		(at -20 0)
+		(size 1.524 1.524)
+		(drill 0.762)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2d499736-6078-4ea6-b516-58f11d305764")
+	)
+	(embedded_fonts no)
+	(model "/home/charlotte/kicadlibs/3dmodels/RSPRO battery holder.wrl"
+		(offset
+			(xyz -20 0 0)
+		)
+		(scale
+			(xyz 393.7008 393.7008 393.7008)
+		)
+		(rotate
+			(xyz 0 180 0)
+		)
+	)
+)
