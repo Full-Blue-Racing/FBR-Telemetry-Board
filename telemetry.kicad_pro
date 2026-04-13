@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 2.54
+          "drill": 0.0,
+          "height": 3.8,
+          "width": 2.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -187,7 +187,10 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.2,
+        0.5,
+        0.8
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -219,6 +222,18 @@
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 0.3,
+          "drill": 0.2
+        },
+        {
+          "diameter": 0.7,
+          "drill": 0.5
+        },
+        {
+          "diameter": 1.2,
+          "drill": 0.8
         }
       ],
       "zones_allow_external_fillets": false
@@ -464,7 +479,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "board2.kicad_pro",
+    "filename": "telemetry.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -482,7 +497,24 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
+        "track_width": 0.25,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.5,
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
@@ -493,7 +525,16 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "+*V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "GND"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
