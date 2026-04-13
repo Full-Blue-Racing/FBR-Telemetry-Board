@@ -4764,7 +4764,7 @@
 		(uuid 2954648a-d8a2-4042-85dd-137d4ad6729c)
 	)
 	(rectangle
-		(start 285.75 17.526)
+		(start 287.02 17.526)
 		(end 402.59 58.166)
 		(stroke
 			(width 0)
@@ -4825,7 +4825,7 @@
 	)
 	(rectangle
 		(start 280.67 139.7)
-		(end 314.96 186.69)
+		(end 314.96 195.58)
 		(stroke
 			(width 0)
 			(type default)
@@ -4860,8 +4860,8 @@
 		(uuid 81b920d3-9e02-470c-ad5b-2f9b5ee14f4c)
 	)
 	(rectangle
-		(start 318.77 21.336)
-		(end 347.98 54.356)
+		(start 320.04 21.336)
+		(end 349.25 54.356)
 		(stroke
 			(width 0)
 			(type dash)
@@ -4896,8 +4896,8 @@
 		(uuid c44bd855-092e-4b52-bd4a-86e31b356954)
 	)
 	(rectangle
-		(start 289.56 21.59)
-		(end 314.96 54.61)
+		(start 290.83 21.59)
+		(end 316.23 54.61)
 		(stroke
 			(width 0)
 			(type dash)
@@ -5029,7 +5029,7 @@
 	)
 	(text "Main Connector"
 		(exclude_from_sim no)
-		(at 297.434 53.594 0)
+		(at 298.704 53.594 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5089,7 +5089,7 @@
 	)
 	(text "External Connectors"
 		(exclude_from_sim no)
-		(at 286.258 57.15 0)
+		(at 236.728 81.026 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5110,7 +5110,7 @@
 	)
 	(text "GPS Connector"
 		(exclude_from_sim no)
-		(at 326.39 53.34 0)
+		(at 327.66 53.34 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5161,7 +5161,7 @@
 	)
 	(text "Front Wheel Speed Sensors"
 		(exclude_from_sim no)
-		(at 281.432 185.674 0)
+		(at 281.178 194.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5858,7 +5858,7 @@
 	)
 	(wire
 		(pts
-			(xy 327.66 36.83) (xy 334.01 36.83)
+			(xy 328.93 36.83) (xy 335.28 36.83)
 		)
 		(stroke
 			(width 0)
@@ -5918,7 +5918,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 36.83) (xy 294.64 35.56)
+			(xy 295.91 36.83) (xy 295.91 35.56)
 		)
 		(stroke
 			(width 0)
@@ -6035,6 +6035,16 @@
 			(type default)
 		)
 		(uuid "2126a21b-24a3-48c2-a4bd-8f642227b36f")
+	)
+	(wire
+		(pts
+			(xy 294.64 177.8) (xy 295.91 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21e419f6-d8c7-451f-8b65-6626af588405")
 	)
 	(wire
 		(pts
@@ -6508,7 +6518,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 40.64) (xy 294.64 39.37)
+			(xy 295.91 40.64) (xy 295.91 39.37)
 		)
 		(stroke
 			(width 0)
@@ -6668,6 +6678,16 @@
 	)
 	(wire
 		(pts
+			(xy 294.64 177.8) (xy 294.64 176.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51e7f148-41b1-4c19-a9bc-b43b3c1181bb")
+	)
+	(wire
+		(pts
 			(xy 378.46 90.17) (xy 372.11 90.17)
 		)
 		(stroke
@@ -6698,7 +6718,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 39.37) (xy 300.99 39.37)
+			(xy 295.91 39.37) (xy 302.26 39.37)
 		)
 		(stroke
 			(width 0)
@@ -6818,7 +6838,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 36.83) (xy 300.99 36.83)
+			(xy 295.91 36.83) (xy 302.26 36.83)
 		)
 		(stroke
 			(width 0)
@@ -6828,7 +6848,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 175.26) (xy 294.64 173.99)
+			(xy 294.64 184.15) (xy 294.64 182.88)
 		)
 		(stroke
 			(width 0)
@@ -6845,16 +6865,6 @@
 			(type default)
 		)
 		(uuid "5c9d3e44-8317-40a1-a9bc-048734915381")
-	)
-	(wire
-		(pts
-			(xy 294.64 154.94) (xy 294.64 153.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5d6cd430-fd99-4592-91dd-1bfa7390432d")
 	)
 	(wire
 		(pts
@@ -6968,6 +6978,16 @@
 	)
 	(wire
 		(pts
+			(xy 294.64 152.4) (xy 295.91 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "648c1de6-0439-4a22-823e-475190de8bde")
+	)
+	(wire
+		(pts
 			(xy 74.93 237.49) (xy 74.93 243.84)
 		)
 		(stroke
@@ -6985,6 +7005,16 @@
 			(type default)
 		)
 		(uuid "664e76d3-e38d-4061-a65e-05712ee6e317")
+	)
+	(wire
+		(pts
+			(xy 294.64 157.48) (xy 295.91 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "68665012-5d4b-4366-babb-831824d070b2")
 	)
 	(wire
 		(pts
@@ -7338,7 +7368,7 @@
 	)
 	(wire
 		(pts
-			(xy 289.56 171.45) (xy 295.91 171.45)
+			(xy 289.56 180.34) (xy 295.91 180.34)
 		)
 		(stroke
 			(width 0)
@@ -7528,7 +7558,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 173.99) (xy 295.91 173.99)
+			(xy 294.64 182.88) (xy 295.91 182.88)
 		)
 		(stroke
 			(width 0)
@@ -7615,6 +7645,16 @@
 			(type default)
 		)
 		(uuid "a34afee3-7c20-472e-abb8-4f58adcf9bea")
+	)
+	(wire
+		(pts
+			(xy 294.64 151.13) (xy 294.64 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a383285a-1136-4dca-a100-8b5cc71eedbb")
 	)
 	(wire
 		(pts
@@ -7738,6 +7778,16 @@
 	)
 	(wire
 		(pts
+			(xy 289.56 154.94) (xy 295.91 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa390b40-83ed-420c-9a4f-cebfe2f7d46b")
+	)
+	(wire
+		(pts
 			(xy 134.62 33.02) (xy 134.62 30.48)
 		)
 		(stroke
@@ -7808,16 +7858,6 @@
 	)
 	(wire
 		(pts
-			(xy 289.56 151.13) (xy 295.91 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "afddbe80-aba6-4a1c-aee4-1b9a6ed7174d")
-	)
-	(wire
-		(pts
 			(xy 217.17 146.05) (xy 210.82 146.05)
 		)
 		(stroke
@@ -7858,6 +7898,16 @@
 	)
 	(wire
 		(pts
+			(xy 294.64 158.75) (xy 294.64 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3c804a3-3112-4a1d-801d-75a201d779e3")
+	)
+	(wire
+		(pts
 			(xy 341.63 86.36) (xy 335.28 86.36)
 		)
 		(stroke
@@ -7878,7 +7928,7 @@
 	)
 	(wire
 		(pts
-			(xy 327.66 39.37) (xy 334.01 39.37)
+			(xy 328.93 39.37) (xy 335.28 39.37)
 		)
 		(stroke
 			(width 0)
@@ -8548,16 +8598,6 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 153.67) (xy 295.91 153.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e25c44c3-84fc-4d9d-8e43-89733c51d108")
-	)
-	(wire
-		(pts
 			(xy 359.41 35.56) (xy 365.76 35.56)
 		)
 		(stroke
@@ -9176,16 +9216,6 @@
 		)
 		(uuid "2b36745f-9ea3-4dd8-8941-1b2d6169e843")
 	)
-	(label "W0"
-		(at 289.56 151.13 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "2cded199-ec35-4a6c-85b8-db8994f798b9")
-	)
 	(label "A4_GND"
 		(at 33.02 177.8 0)
 		(effects
@@ -9777,7 +9807,7 @@
 		(uuid "a80dc9f4-b71a-4be7-a61f-362e85e78b73")
 	)
 	(label "CANH"
-		(at 327.66 36.83 180)
+		(at 328.93 36.83 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9787,7 +9817,7 @@
 		(uuid "a9390a4e-9750-44bb-ab6e-e0b0764062cb")
 	)
 	(label "W1"
-		(at 289.56 171.45 180)
+		(at 289.56 180.34 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10007,7 +10037,7 @@
 		(uuid "cc6a9d14-dba6-44cb-86c4-ba1cffd4dcc8")
 	)
 	(label "CANL"
-		(at 327.66 39.37 180)
+		(at 328.93 39.37 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10025,6 +10055,16 @@
 			(justify right bottom)
 		)
 		(uuid "d03fd463-7fef-48dd-a03a-1c270a300efc")
+	)
+	(label "W0"
+		(at 289.56 154.94 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d1220556-afed-4ca8-8214-7cc9a841ee7f")
 	)
 	(label "PSU+"
 		(at 59.69 33.02 0)
@@ -10627,7 +10667,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 294.64 175.26 0)
+		(at 294.64 184.15 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10636,7 +10676,7 @@
 		(fields_autoplaced yes)
 		(uuid "0a8bfd23-3ab3-4473-a9d2-d110a1391b7d")
 		(property "Reference" "#PWR061"
-			(at 294.64 181.61 0)
+			(at 294.64 190.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10645,7 +10685,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 294.64 180.34 0)
+			(at 294.64 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10653,7 +10693,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 294.64 175.26 0)
+			(at 294.64 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10662,7 +10702,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 294.64 175.26 0)
+			(at 294.64 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10671,7 +10711,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 294.64 175.26 0)
+			(at 294.64 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11200,6 +11240,72 @@
 			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "U6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 294.64 158.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1c9ff435-be63-4f0c-b8ca-f073f0a8cedc")
+		(property "Reference" "#PWR029"
+			(at 294.64 165.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 294.64 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 294.64 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 294.64 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 294.64 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8706a765-d517-4381-b82b-f584eea18806")
+		)
+		(instances
+			(project "telemetry"
+				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -11975,7 +12081,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 339.09 36.83 0)
+		(at 340.36 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11983,7 +12089,7 @@
 		(dnp no)
 		(uuid "2ee545a6-c8fc-4152-9c98-9302aa5eacb0")
 		(property "Reference" "J10"
-			(at 339.09 30.48 0)
+			(at 340.36 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11991,7 +12097,7 @@
 			)
 		)
 		(property "Value" "DT13-2P"
-			(at 339.09 33.02 0)
+			(at 340.36 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11999,7 +12105,7 @@
 			)
 		)
 		(property "Footprint" "Connector_DT:TE_DT13-2P"
-			(at 339.09 36.83 0)
+			(at 340.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12008,7 +12114,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 339.09 36.83 0)
+			(at 340.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12017,7 +12123,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 339.09 36.83 0)
+			(at 340.36 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14447,72 +14553,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 294.64 154.94 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6aebdd21-f477-4ffb-9940-42c0caad3354")
-		(property "Reference" "#PWR029"
-			(at 294.64 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 294.64 160.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 294.64 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 294.64 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 294.64 154.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d03c32ce-f91a-4e16-803f-7b823cb89584")
-		)
-		(instances
-			(project "telemetry"
-				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
-					(reference "#PWR029")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+12V")
 		(at 26.67 29.21 0)
 		(unit 1)
@@ -14664,7 +14704,7 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 294.64 35.56 0)
+		(at 295.91 35.56 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14673,7 +14713,7 @@
 		(fields_autoplaced yes)
 		(uuid "745b0d05-4eb5-4eba-91c3-97a8f9c76d5d")
 		(property "Reference" "#PWR02"
-			(at 294.64 39.37 0)
+			(at 295.91 39.37 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14682,7 +14722,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 294.64 30.48 0)
+			(at 295.91 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14690,7 +14730,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 294.64 35.56 0)
+			(at 295.91 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14699,7 +14739,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 294.64 35.56 0)
+			(at 295.91 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14708,7 +14748,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 294.64 35.56 0)
+			(at 295.91 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14928,32 +14968,17 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x02")
-		(at 300.99 171.45 0)
+		(lib_id "power:+3V3")
+		(at 294.64 151.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "819c41c3-edb8-461f-8f32-89cc3056353d")
-		(property "Reference" "J22"
-			(at 300.99 165.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02"
-			(at 300.99 167.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1_1x02_P2.50mm_Vertical"
-			(at 300.99 171.45 0)
+		(fields_autoplaced yes)
+		(uuid "7bce10f2-64ed-4527-8d2d-391eb7c425dc")
+		(property "Reference" "#PWR062"
+			(at 294.64 154.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14961,8 +14986,16 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 300.99 171.45 0)
+		(property "Value" "+3V3"
+			(at 294.64 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 294.64 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14970,8 +15003,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 300.99 171.45 0)
+		(property "Datasheet" ""
+			(at 294.64 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 294.64 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14980,15 +15022,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "0b6234aa-e9e8-4024-97ea-08333b6644cb")
-		)
-		(pin "2"
-			(uuid "fc765a1d-fae7-45e1-ba27-5054798bab9d")
+			(uuid "47188d9a-8eb3-4ca9-aef8-50f1a7c5f1f3")
 		)
 		(instances
-			(project "telemetry"
+			(project ""
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
-					(reference "J22")
+					(reference "#PWR062")
 					(unit 1)
 				)
 			)
@@ -15322,6 +15361,76 @@
 			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "#PWR060")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 300.99 180.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "979fefd8-5857-426e-b80d-51a4c25dff4a")
+		(property "Reference" "J22"
+			(at 303.276 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(at 303.276 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XA_B03B-XASK-1_1x03_P2.50mm_Vertical"
+			(at 300.99 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 300.99 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 300.99 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "9ed316f0-9404-450b-9e36-c06c2696c725")
+		)
+		(pin "2"
+			(uuid "7f74d486-03c7-4348-a6e8-ba1c2cbee922")
+		)
+		(pin "1"
+			(uuid "7958ac40-8121-4bbe-be23-a467df31e534")
+		)
+		(instances
+			(project ""
+				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
+					(reference "J22")
 					(unit 1)
 				)
 			)
@@ -16753,6 +16862,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 294.64 176.53 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c4d79b4f-4049-442a-a817-1d3542b99e95")
+		(property "Reference" "#PWR063"
+			(at 294.64 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 294.64 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 294.64 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 294.64 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 294.64 176.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9f12cf07-4c86-4217-9380-5bcd80963ca8")
+		)
+		(instances
+			(project "telemetry"
+				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
+					(reference "#PWR063")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
 		(at 392.43 35.56 0)
 		(unit 1)
@@ -17008,6 +17183,76 @@
 			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "U2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x03")
+		(at 300.99 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c8754439-2745-40f4-af99-c4b6519de5e1")
+		(property "Reference" "J1"
+			(at 302.768 146.304 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_01x03"
+			(at 302.768 148.844 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_XA_B03B-XASK-1_1x03_P2.50mm_Vertical"
+			(at 300.99 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 300.99 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 300.99 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "cbfb4124-cc82-432d-be7c-d7496922f81e")
+		)
+		(pin "2"
+			(uuid "87e6af5a-a8cb-4a52-b6e4-0ea177d72aa3")
+		)
+		(pin "1"
+			(uuid "0497b0d4-8ee4-4cfe-b225-16f12d0a5372")
+		)
+		(instances
+			(project "telemetry"
+				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -18540,7 +18785,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 306.07 36.83 0)
+		(at 307.34 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18548,7 +18793,7 @@
 		(dnp no)
 		(uuid "edba06a7-6135-4015-a8c2-1972205bed42")
 		(property "Reference" "J2"
-			(at 306.07 30.48 0)
+			(at 307.34 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18556,7 +18801,7 @@
 			)
 		)
 		(property "Value" "DT13-2P"
-			(at 306.07 33.02 0)
+			(at 307.34 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18564,7 +18809,7 @@
 			)
 		)
 		(property "Footprint" "Connector_DT:TE_DT13-2P"
-			(at 306.07 36.83 0)
+			(at 307.34 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18573,7 +18818,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 306.07 36.83 0)
+			(at 307.34 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18582,7 +18827,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 306.07 36.83 0)
+			(at 307.34 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18809,7 +19054,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 294.64 40.64 0)
+		(at 295.91 40.64 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -18818,7 +19063,7 @@
 		(fields_autoplaced yes)
 		(uuid "f118e42c-7ebf-4639-9c7d-e075c31ea5f1")
 		(property "Reference" "#PWR04"
-			(at 294.64 46.99 0)
+			(at 295.91 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18827,7 +19072,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 294.64 45.72 0)
+			(at 295.91 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18835,7 +19080,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 294.64 40.64 0)
+			(at 295.91 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18844,7 +19089,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 294.64 40.64 0)
+			(at 295.91 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18853,7 +19098,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 294.64 40.64 0)
+			(at 295.91 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19208,73 +19453,6 @@
 			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "#PWR049")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Generic:Conn_01x02")
-		(at 300.99 151.13 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "faf665f9-9c76-4a84-9a09-7138743bc64b")
-		(property "Reference" "J1"
-			(at 300.99 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_01x02"
-			(at 300.99 147.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_JST:JST_XA_B02B-XASK-1_1x02_P2.50mm_Vertical"
-			(at 300.99 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 300.99 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 300.99 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8995abe1-a561-48a4-a265-61867508d252")
-		)
-		(pin "2"
-			(uuid "bb8fc8eb-5d33-445a-86f8-1838af782cfd")
-		)
-		(instances
-			(project "telemetry"
-				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
-					(reference "J1")
 					(unit 1)
 				)
 			)
