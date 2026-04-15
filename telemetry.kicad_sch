@@ -5543,10 +5543,6 @@
 		(uuid "6c1686e3-02f0-4034-92d2-11583c63d366")
 	)
 	(no_connect
-		(at 175.26 128.27)
-		(uuid "81d231c7-4f5c-43ba-83e2-f19aef3b6682")
-	)
-	(no_connect
 		(at 210.82 151.13)
 		(uuid "8520e9ed-9c72-47e3-a047-e9f3dbacf608")
 	)
@@ -6625,6 +6621,16 @@
 			(type default)
 		)
 		(uuid "4e5e09ed-8b9d-4a0a-8b86-2bf7c6838db4")
+	)
+	(wire
+		(pts
+			(xy 168.91 128.27) (xy 175.26 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ec058f8-9708-49f2-acd1-501d0064019c")
 	)
 	(wire
 		(pts
@@ -10005,6 +10011,16 @@
 			(justify right bottom)
 		)
 		(uuid "c4b6cfe5-b303-42a6-b869-0d3d46ca9cd6")
+	)
+	(label "A4"
+		(at 168.91 128.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c6bbc524-addb-4959-8f4b-ab3d2758e06d")
 	)
 	(label "SPI1_MISO"
 		(at 168.91 138.43 180)
