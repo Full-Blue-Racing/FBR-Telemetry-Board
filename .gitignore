@@ -31,3 +31,7 @@ fp-info-cache
 
 # Generated Files Dir
 .DS_Store
+
+# ESP-IDF build output
+FBR-Telemetry-Board-hello-world/build/
+FBR-Telemetry-Board-hello-world/sdkconfig.old
