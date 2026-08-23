@@ -1,0 +1,25 @@
+Command: ninja all
+Configuration Report               
+ ───────────────────────────────── 
+   Parser Version: 1               
+   Verbosity: default              
+   Defaults policy: sdkconfig      
+   Status: Finished successfully   
+                                   
+ ───────────────────────────────── 
+CMake Error at /Users/yuyouyou/esp/esp-idf/tools/cmake/component.cmake:492 (add_library):
+  Cannot find source file:
+
+    /Users/yuyouyou/Desktop/FBR-Telemetry-Board/FBR-Telemetry-Board-hello-world/main/main.c
+Call Stack (most recent call first):
+  main/CMakeLists.txt:1 (idf_component_register)
+
+
+CMake Error at /Users/yuyouyou/esp/esp-idf/tools/cmake/component.cmake:492 (add_library):
+  No SOURCES given to target: __idf_main
+Call Stack (most recent call first):
+  main/CMakeLists.txt:1 (idf_component_register)
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
+ninja: error: rebuilding 'build.ninja': subcommand failed

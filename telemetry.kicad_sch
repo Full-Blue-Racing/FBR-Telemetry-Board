@@ -15300,7 +15300,7 @@
 			(uuid "47188d9a-8eb3-4ca9-aef8-50f1a7c5f1f3")
 		)
 		(instances
-			(project ""
+			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "#PWR062")
 					(unit 1)
@@ -15637,7 +15637,7 @@
 			(uuid "7958ac40-8121-4bbe-be23-a467df31e534")
 		)
 		(instances
-			(project ""
+			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "J22")
 					(unit 1)
@@ -19744,7 +19744,7 @@
 			(uuid "bce1b5a3-2116-4f7e-9a56-4c1cc87f8612")
 		)
 		(instances
-			(project ""
+			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "J23")
 					(unit 1)
@@ -19877,7 +19877,7 @@
 			(uuid "6c6a95b8-63b3-42ea-9a91-45b617ee6940")
 		)
 		(instances
-			(project ""
+			(project "telemetry"
 				(path "/da5af672-ed01-447c-a04e-2f8fc75a23d3"
 					(reference "#PWR064")
 					(unit 1)
