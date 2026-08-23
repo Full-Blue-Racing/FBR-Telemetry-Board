@@ -13,6 +13,6 @@
 #define PA1010D_ADDR  0x10
 #define ACC_SIZE      512
 
-void gps_i2c_start(void);
+void gps_start(void);
 
 #endif

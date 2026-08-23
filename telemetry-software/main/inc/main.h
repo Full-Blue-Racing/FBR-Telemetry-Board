@@ -10,6 +10,8 @@
 #include "esp_log.h"
 
 #include "GPS.h"
+#include "i2c.h"
+#include "imu.h"
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -20,8 +22,6 @@
 #include "esp_log.h"
 
 
-#define I2C_SDA       35
-#define I2C_SCL       2
-#define I2C_FREQ_HZ   400000
+
 #endif
 

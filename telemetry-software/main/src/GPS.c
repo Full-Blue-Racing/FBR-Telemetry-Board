@@ -1,9 +1,11 @@
 #include "GPS.h"
 #include "main.h"
 #include "log_queue.h"
+#include "i2c.h"
 
 static const char *TAG = "gps";
 static i2c_master_dev_handle_t s_gps;
+i2c_master_bus_handle_t bus;
 static char acc[ACC_SIZE];
 static size_t acc_len = 0;
 
@@ -115,30 +117,27 @@ void gps_task(void *arg) {
 }
 
 
-void gps_i2c_start(void){
-    i2c_master_bus_config_t bus_cfg = {
-        .i2c_port = I2C_NUM_0,
-        .sda_io_num = I2C_SDA,
-        .scl_io_num = I2C_SCL,
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = true,
-    };
-    i2c_master_bus_handle_t bus;
-    ESP_ERROR_CHECK(i2c_new_master_bus(&bus_cfg, &bus));
 
-    // Scan equivalent: probe returns ESP_OK if 0x10 ACKs.
+void gps_start(void){
+    bus = i2c_bus_get_handle();
+        // Scan equivalent: probe returns ESP_OK if 0x10 ACKs.
     if (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK)
         ESP_LOGI(TAG, "PA1010D found at 0x10");
     else
         ESP_LOGW(TAG, "no ACK at 0x10 - check wiring");
+
 
     i2c_device_config_t dev_cfg = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address = PA1010D_ADDR,
         .scl_speed_hz = I2C_FREQ_HZ,
     };
-    ESP_ERROR_CHECK(i2c_master_bus_add_device(bus, &dev_cfg, &s_gps));
+
+    esp_err_t ret = i2c_master_bus_add_device(bus, &dev_cfg, &s_gps);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "add_device failed: %s", esp_err_to_name(ret));
+        return;
+    }
 
     xTaskCreate(gps_task, "gps", 4096, NULL, 5, NULL);
 }
