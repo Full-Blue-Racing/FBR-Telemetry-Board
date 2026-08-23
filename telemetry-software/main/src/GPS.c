@@ -1,5 +1,6 @@
 #include "GPS.h"
 #include "main.h"
+#include "log_queue.h"
 
 static const char *TAG = "gps";
 static i2c_master_dev_handle_t s_gps;
@@ -74,8 +75,12 @@ void process_line(char *line) {
     // if (nf < 1) return;
     // size_t l0 = strlen(fields[0]);
     // if (l0 < 3) return;
-    if (strncmp(line + 3, "RMC", 3) == 0 || strncmp(line + 3, "GGA", 3) == 0)
-    printf("%s\n", line);
+    if (strncmp(line + 3, "RMC", 3) == 0 || strncmp(line + 3, "GGA", 3) == 0){
+        printf("%s\n", "GPS sensor online");
+        printf("%s\n", line);
+        log_queue_push(LOG_SRC_GPS, line);
+    }
+    // printf("%s\n", line);
     
 }
 
@@ -110,7 +115,7 @@ void gps_task(void *arg) {
 }
 
 
-void gps_i2c_stream(void){
+void gps_i2c_start(void){
     i2c_master_bus_config_t bus_cfg = {
         .i2c_port = I2C_NUM_0,
         .sda_io_num = I2C_SDA,
