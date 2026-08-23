@@ -1,8 +1,14 @@
 #include "GPS.h"
+#include "main.h"
 
+static const char *TAG = "gps";
+static i2c_master_dev_handle_t s_gps;
+static char acc[ACC_SIZE];
+static size_t acc_len = 0;
 
-
-
+/**
+ * NMEA HELPERS 
+ */
 bool valid_checksum(const char *s) {
     const char *star = strchr(s, '*');
     if (!star) return false;
@@ -10,7 +16,9 @@ bool valid_checksum(const char *s) {
     for (const char *p = s + 1; p < star; p++) calc ^= (uint8_t)*p;
     unsigned int given;
     if (sscanf(star + 1, "%2x", &given) != 1) return false;
-    return calc == (uint8_t)giv
+    return calc == (uint8_t)given;
+}
+
 
 // Split on commas IN PLACE, preserving empty fields. Returns field count.
 int split_fields(char *s, char *fields[], int max_fields) {
@@ -21,6 +29,7 @@ int split_fields(char *s, char *fields[], int max_fields) {
     }
     return n;
 }
+
 
 // ddmm.mmmm -> decimal degrees. Anchors on the decimal point:
 // the two digits before it are the minutes' integer part.
@@ -49,19 +58,25 @@ void parse_gga(char *f[], int n) {
     ESP_LOGI(TAG, "lat=%.6f lon=%.6f alt=%.1fm sats=%d", lat, lon, alt, sats);
 }
 
+
+
+/** **************************************************** */
+
 void process_line(char *line) {
     if (line[0] != '$') return;
     if (!valid_checksum(line)) return;
-    char *star = strchr(line, '*');
-    if (star) *star = '\0';               // drop checksum so it doesn't pollute last field
-    char *fields[24];
-    int nf = split_fields(line, fields, 24);
-    if (nf < 1) return;
-    size_t l0 = strlen(fields[0]);
-    if (l0 < 3) return;
-    const char *type = fields[0] + l0 - 3; // match last 3 chars: GN or GP both work
-    if (strcmp(type, "GGA") == 0) parse_gga(fields, nf);
-    // add: if (strcmp(type, "RMC") == 0) parse_rmc(...);
+   
+    // char *star = strchr(line, '*');
+    // if (star) *star = '\0';  
+
+    // char *fields[24];
+    // int nf = split_fields(line, fields, 24);
+    // if (nf < 1) return;
+    // size_t l0 = strlen(fields[0]);
+    // if (l0 < 3) return;
+    if (strncmp(line + 3, "RMC", 3) == 0 || strncmp(line + 3, "GGA", 3) == 0)
+    printf("%s\n", line);
+    
 }
 
 // Feed a raw I2C chunk into the accumulator, emitting complete lines.
@@ -74,7 +89,7 @@ void feed(const uint8_t *chunk, size_t len) {
             acc_len = 0;
         } else if (b == '\r') {
             // skip
-        } else if (acc_len < GPS_ACC_SIZE - 1) {
+        } else if (acc_len < ACC_SIZE - 1) {
             acc[acc_len++] = (char)b;
         } else {
             acc_len = 0;                  // overflow guard: drop the runaway line
@@ -82,14 +97,6 @@ void feed(const uint8_t *chunk, size_t len) {
     }
 }
 
-// Optional: send a PMTK config command (checksum computed for you).
-void send_pmtk(const char *cmd) {   // e.g. "PMTK220,1000" for 1 Hz
-    uint8_t ck = 0;
-    for (const char *p = cmd; *p; p++) ck ^= (uint8_t)*p;
-    char out[96];
-    int len = snprintf(out, sizeof(out), "$%s*%02X\r\n", cmd, ck);
-    i2c_master_transmit(s_gps, (uint8_t *)out, len, pdMS_TO_TICKS(100));
-}
 
 void gps_task(void *arg) {
     uint8_t chunk[32];
@@ -100,4 +107,33 @@ void gps_task(void *arg) {
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
+}
+
+
+void gps_i2c_stream(void){
+    i2c_master_bus_config_t bus_cfg = {
+        .i2c_port = I2C_NUM_0,
+        .sda_io_num = I2C_SDA,
+        .scl_io_num = I2C_SCL,
+        .clk_source = I2C_CLK_SRC_DEFAULT,
+        .glitch_ignore_cnt = 7,
+        .flags.enable_internal_pullup = true,
+    };
+    i2c_master_bus_handle_t bus;
+    ESP_ERROR_CHECK(i2c_new_master_bus(&bus_cfg, &bus));
+
+    // Scan equivalent: probe returns ESP_OK if 0x10 ACKs.
+    if (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK)
+        ESP_LOGI(TAG, "PA1010D found at 0x10");
+    else
+        ESP_LOGW(TAG, "no ACK at 0x10 - check wiring");
+
+    i2c_device_config_t dev_cfg = {
+        .dev_addr_length = I2C_ADDR_BIT_LEN_7,
+        .device_address = PA1010D_ADDR,
+        .scl_speed_hz = I2C_FREQ_HZ,
+    };
+    ESP_ERROR_CHECK(i2c_master_bus_add_device(bus, &dev_cfg, &s_gps));
+
+    xTaskCreate(gps_task, "gps", 4096, NULL, 5, NULL);
 }
