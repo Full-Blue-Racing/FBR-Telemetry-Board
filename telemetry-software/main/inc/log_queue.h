@@ -7,7 +7,7 @@
 
 typedef enum {
     LOG_SRC_GPS = 0,
-    LOG_SRC_IMU,        // your future sensor
+    LOG_SRC_IMU = 1,        // your future sensor
     // add more here
 } log_source_t;
 
