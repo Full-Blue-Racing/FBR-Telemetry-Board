@@ -45,8 +45,8 @@ static void imu_task(void *arg) {
             }
 
             snprintf(line, sizeof(line), "%d,%d,%d,%d,%d,%d", ax, ay, az, gx, gy, gz);
-            printf("%s\n", "IMU online");
-            printf("%s\n", line);
+            ESP_LOGD(TAG, "IMU online");
+            ESP_LOGD(TAG, "%s", line);
             log_queue_push(LOG_SRC_IMU, line);
         }
         vTaskDelay(pdMS_TO_TICKS(100));

@@ -24,10 +24,10 @@ static const char *src_tag(log_source_t s) {
 
 
 
-// Find the lowest gpslog_NNN.txt that doesn't exist yet, build its path.
+// Find the lowest datalog_NNN.txt that doesn't exist yet, build its path.
 static bool next_free_path(char *out, size_t out_sz) {
     for (int i = 0; i < MAX_FILE_IDX; i++) {
-        snprintf(out, out_sz, MOUNT_POINT "/gpslog_%03d.txt", i);
+        snprintf(out, out_sz, MOUNT_POINT "/datalog_%03d.txt", i);
         struct stat st;
         if (stat(out, &st) != 0) {          // stat fails => file doesn't exist
             return true;                    // ...so this name is free
@@ -119,7 +119,7 @@ static void logger_task(void *arg) {
         if (xQueueReceive(g_log_queue, &item, portMAX_DELAY) == pdTRUE) {
             // vTaskDelay(pdMS_TO_TICKS(1000));   // <-- artificially slow the consumer, for debugging
             UBaseType_t waiting = uxQueueMessagesWaiting(g_log_queue);
-            ESP_LOGI(TAG, "logged (%u still queued)", (unsigned)waiting);
+            ESP_LOGD(TAG, "logged (%u still queued)", (unsigned)waiting);
             
             char out[LOG_LINE_MAX + 8];
             snprintf(out, sizeof(out), "%s,%s", src_tag(item.source), item.text);

@@ -78,12 +78,11 @@ void process_line(char *line) {
     // size_t l0 = strlen(fields[0]);
     // if (l0 < 3) return;
     if (strncmp(line + 3, "RMC", 3) == 0 || strncmp(line + 3, "GGA", 3) == 0){
-        printf("%s\n", "GPS sensor online");
-        printf("%s\n", line);
+        ESP_LOGD(TAG, "GPS sensor online");
+        ESP_LOGD(TAG, "%s", line);
         log_queue_push(LOG_SRC_GPS, line);
     }
-    // printf("%s\n", line);
-    
+
 }
 
 // Feed a raw I2C chunk into the accumulator, emitting complete lines.
