@@ -7,8 +7,8 @@
 #include "freertos/task.h"
 
 static const char *TAG = "sd";
-static FILE *s_logf = NULL; //flash buffer 
-static sdmmc_card_t *s_card = NULL;
+static FILE *s_logf = NULL; //flash buffer
+static wl_handle_t s_wl_handle = WL_INVALID_HANDLE;
 static int64_t s_last_flush = 0;  //for timing, flash every 5 seconds
 static int64_t s_file_started = 0; //for timing, start a new file every 1 hr or upon start up
 
@@ -61,61 +61,27 @@ static esp_err_t open_new_file(void) {
 }
 
 esp_err_t sd_init(void) {
-    esp_err_t ret;
-    sdmmc_host_t host = SDSPI_HOST_DEFAULT();
-
-    spi_bus_config_t bus_cfg = {
-        .mosi_io_num     = SD_SPI_MOSI,
-        .miso_io_num     = SD_SPI_MISO,
-        .sclk_io_num     = SD_SPI_SCK,
-        .quadwp_io_num   = -1,
-        .quadhd_io_num   = -1,
-        .max_transfer_sz = 4000,
-    };
-
-    sdspi_device_config_t slot_config = SDSPI_DEVICE_CONFIG_DEFAULT();
-    slot_config.gpio_cs = SD_SPI_CS;
-    slot_config.host_id = host.slot;
-
-    esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-        .format_if_mount_failed = false,
+    esp_vfs_fat_mount_config_t mount_config = {
+        .format_if_mount_failed = true,     // blank/new partition auto-formats on first boot
         .max_files              = 3,
         .allocation_unit_size   = 16 * 1024,
     };
 
-    // Bus init and mount are retried together: a failed mount still leaves
-    // the SPI bus (and CS pin) claimed, so it must be freed before the next
-    // spi_bus_initialize() or the retry conflicts on GPIO[SD_SPI_CS].
-    while (1) {
-        ret = spi_bus_initialize(host.slot, &bus_cfg, SDSPI_DEFAULT_DMA);
-        if (ret != ESP_OK) {
-            ESP_LOGE(TAG, "spi_bus_initialize failed: %s", esp_err_to_name(ret));
-            vTaskDelay(pdMS_TO_TICKS(100));
-            continue;
-        }
-
-        ret = esp_vfs_fat_sdspi_mount(MOUNT_POINT, &host, &slot_config,
-                                      &mount_config, &s_card);
-        if (ret == ESP_OK) break;
-
-        if (ret == ESP_FAIL)
-            ESP_LOGE(TAG, "mount failed - card not FAT32 formatted?");
-        else
-            ESP_LOGE(TAG, "card init failed: %s - check wiring/power",
-                     esp_err_to_name(ret));
-
-        spi_bus_free(host.slot);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+    esp_err_t ret = esp_vfs_fat_spiflash_mount_rw_wl(MOUNT_POINT, PARTITION_LABEL,
+                                                     &mount_config, &s_wl_handle);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "flash mount failed: %s", esp_err_to_name(ret));
+        return ret;
     }
-
-    sdmmc_card_print_info(stdout, s_card);
 
     return open_new_file();                 // requirement: new file on power-on
 }
 
 void sd_log_line(const char *line) {
-    if (!s_logf) return;
-
+    if (!s_logf) { //chekc whether file has been successfully opened 
+        ESP_LOGE(TAG, "SD log file none existent");
+        return;
+    }
     int64_t now = esp_timer_get_time();
 
     // Roll to a new file every hour of runtime.
@@ -164,4 +130,20 @@ static void logger_task(void *arg) {
 
 void sd_logger_start(void) {
     xTaskCreate(logger_task, "logger", 4096, NULL, 4, NULL);
+}
+
+// Debug helper: print a log file's contents to the serial console.
+void sd_dump_file(const char *path) {
+    FILE *f = fopen(path, "r");
+    if (!f) {
+        ESP_LOGE(TAG, "dump: fopen(%s) failed", path);
+        return;
+    }
+    ESP_LOGI(TAG, "----- dump %s -----", path);
+    char line[LOG_LINE_MAX + 8];
+    while (fgets(line, sizeof(line), f)) {
+        printf("%s", line);
+    }
+    ESP_LOGI(TAG, "----- end dump -----");
+    fclose(f);
 }
