@@ -123,7 +123,7 @@ void gps_start(void){
     if (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK)
         ESP_LOGI(TAG, "PA1010D found at 0x10");
     else
-        ESP_LOGW(TAG, "no ACK at 0x10 - check wiring");
+        ESP_LOGE(TAG, "no ACK at 0x10 - check wiring");
 
 
     i2c_device_config_t dev_cfg = {

@@ -11,9 +11,10 @@ void app_main(void) {
     sd_init();
     i2c_bus_init();
 
-    console_start();
+    
 
-    // sd_logger_start();
-    // gps_start();
-    // imu_start();
+    sd_logger_start();
+    gps_start();
+    imu_start();
+    console_start();
 }
