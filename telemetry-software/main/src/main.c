@@ -16,12 +16,20 @@ void app_main(void) {
 
     sd_logger_start();
     bool gps_ok = gps_start();
-    bool imu_ok = (imu_start() == ESP_OK);
-    console_start();
+    bool imu_ok = imu_start();
 
     if (gps_ok && imu_ok) {
         led_status_ok();
-    } else {
-        led_status_fail();
+    } else if(!gps_ok && !imu_ok){
+        led_status_fail(0);
+    } 
+    else if (!gps_ok) {
+        led_status_fail(1);
+
+    } else if (!imu_ok){
+        led_status_fail(2);
     }
+    console_start();
+
+
 }

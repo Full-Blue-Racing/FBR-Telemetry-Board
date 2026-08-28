@@ -8,18 +8,20 @@
 #include "freertos/task.h"
 #include "esp_log.h"
 
-#define LED_STATUS_GPIO       21
-#define LED_RMT_RESOLUTION_HZ 10000000   // 10MHz, 1 tick = 0.1us (WS2812 needs this precision)
+#define LED_STATUS_GPIO       38
+#define LED_RMT_RESOLUTION_HZ 10000000   // 10MHz, 1 tick = 0.1us
 #define LED_BLINK_PERIOD_MS   400
 
 static const char *TAG = "led";
 static rmt_channel_handle_t s_chan = NULL;
 static rmt_encoder_handle_t s_encoder = NULL;
-static TaskHandle_t s_blink_task = NULL;
+static TaskHandle_t r_blink_task = NULL;
 
-// WS2812 pixel byte order is GRB, not RGB.
+
+// This board's LED wants plain RGB order on the wire (confirmed by testing -
+// classic WS2812 is documented as GRB, but this one isn't that).
 static void send_pixel(uint8_t r, uint8_t g, uint8_t b) {
-    uint8_t pixel[3] = { g, r, b };
+    uint8_t pixel[3] = { r, g, b };
     rmt_transmit_config_t tx_config = { .loop_count = 0 };
     rmt_transmit(s_chan, s_encoder, pixel, sizeof(pixel), &tx_config);
     rmt_tx_wait_all_done(s_chan, portMAX_DELAY);
@@ -66,14 +68,26 @@ esp_err_t led_status_init(void) {
 }
 
 void led_status_ok(void) {
-    if (s_blink_task) {
-        vTaskDelete(s_blink_task);
-        s_blink_task = NULL;
+    if (r_blink_task) {
+        vTaskDelete(r_blink_task);
+        r_blink_task = NULL;
     }
     send_pixel(0, 32, 0);   // dim green, solid
 }
 
-void led_status_fail(void) {
-    if (s_blink_task) return;   // already flashing
-    xTaskCreate(blink_task, "led_blink", 2048, NULL, 3, &s_blink_task);
+void led_status_fail(uint8_t flag) {
+    switch (flag){
+        case 1:
+            send_pixel(32, 32, 0); //yellow, gps failed to initilaise
+            break;
+        case 2:
+            send_pixel(32, 0, 32); //purple, imu failed to initilaise
+            break;
+        case 0:
+            send_pixel(32, 0, 0); //purple, both failed to initilaise.
+            break;   
+    }
+
+    // if (r_blink_task) return;   // already flashing
+    // xTaskCreate(blink_task, "led_blink", 2048, NULL, 3, &r_blink_task);
 }

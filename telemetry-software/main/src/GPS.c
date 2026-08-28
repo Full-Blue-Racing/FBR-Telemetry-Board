@@ -118,12 +118,20 @@ void gps_task(void *arg) {
 
 bool gps_start(void){
     bus = i2c_bus_get_handle();
-        // Scan equivalent: probe returns ESP_OK if 0x10 ACKs.
-    bool found = (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK);
+    // Retry the probe for a bit: on a cold power-on the GPS module's own
+    // boot/settling time can outlast a single 100ms probe, and this result is
+    // what the status LED snapshots - see imu_start() for the same treatment.
+    bool found = false;
+    for (int attempt = 0; attempt < 5 && !found; attempt++) {
+        found = (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK);
+        if (!found) {
+            vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
     if (found)
         ESP_LOGI(TAG, "PA1010D found at 0x10");
     else
-        ESP_LOGE(TAG, "no ACK at 0x10 - check wiring");
+        ESP_LOGE(TAG, "no ACK at 0x10 after retries - check wiring");
 
 
     i2c_device_config_t dev_cfg = {

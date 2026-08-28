@@ -52,7 +52,7 @@ static void imu_task(void *arg) {
     }
 }
 
-esp_err_t imu_start(void) {
+bool imu_start(void) {
     i2c_device_config_t dev_cfg = {
         .dev_addr_length = I2C_ADDR_BIT_LEN_7,
         .device_address  = ICM20948_ADDR,
@@ -62,25 +62,37 @@ esp_err_t imu_start(void) {
     esp_err_t ret = i2c_master_bus_add_device(bus, &dev_cfg, &s_imu);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "add_device failed: %s", esp_err_to_name(ret));
-        return ret;
+        return false;
     }
 
-    if (i2c_master_probe(bus, 0x68, pdMS_TO_TICKS(150)) == ESP_OK){
-        ESP_LOGI(TAG, "ICM20948 found at 0x68");
-    } else if (i2c_master_probe(bus, 0x69, pdMS_TO_TICKS(150)) == ESP_OK){
-        ESP_LOGI(TAG, "ICM20948 found at 0x69");
-    } else{
-        ESP_LOGE(TAG, "ICM20948 not found at 0x68 or 0x69");
-        return ESP_ERR_NOT_FOUND;
+    bool found = false;
+    uint8_t found_addr = 0;
+    for (int attempt = 0; attempt < 5 && !found; attempt++) {
+        if (i2c_master_probe(bus, 0x68, pdMS_TO_TICKS(150)) == ESP_OK) {
+            found = true;
+            found_addr = 0x68;
+        } else if (i2c_master_probe(bus, 0x69, pdMS_TO_TICKS(150)) == ESP_OK) {
+            found = true;
+            found_addr = 0x69;
+        } else {
+            vTaskDelay(pdMS_TO_TICKS(100));
+        }
+    }
+    if (found) {
+        ESP_LOGI(TAG, "ICM20948 found at 0x%02X", found_addr);
+    } else {
+        ESP_LOGW(TAG, "ICM20948 not found at 0x68 or 0x69 after retries - starting task anyway");
     }
 
-    ret = imu_wake();
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "wake failed: %s", esp_err_to_name(ret));
-        return ret;
+    esp_err_t wake_ret = imu_wake();
+    if (wake_ret != ESP_OK) {
+        ESP_LOGW(TAG, "initial wake failed: %s - imu_task's zero-streak check will retry", esp_err_to_name(wake_ret));
     }
 
+    // Always start the task, even if the chip wasn't ready yet at boot (e.g. a
+    // cold-boot power-on race - see imu_task's zero-streak re-wake): it'll
+    // recover on its own once the IMU comes up, same as gps_task already does.
     xTaskCreate(imu_task, "imu", 4096, NULL, 5, NULL);
-    return ESP_OK;
+    return found;
 }
 

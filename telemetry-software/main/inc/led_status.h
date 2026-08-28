@@ -9,4 +9,4 @@ esp_err_t led_status_init(void);
 void led_status_ok(void);
 
 // Flashing red: at least one sensor missing.
-void led_status_fail(void);
+void led_status_fail(uint8_t flag);
