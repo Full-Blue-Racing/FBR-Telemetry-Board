@@ -6,6 +6,8 @@ idf_component_register(SRCS
     "src/i2c.c"
     "src/imu.c"
     "src/console.c"
-    PRIV_REQUIRES spi_flash esp_driver_i2c fatfs esp_timer wear_levelling console
+    "src/led_strip_encoder.c"
+    "src/led_status.c"
+    PRIV_REQUIRES spi_flash esp_driver_i2c fatfs esp_timer wear_levelling console esp_driver_gpio esp_driver_rmt
     INCLUDE_DIRS "inc"
 )

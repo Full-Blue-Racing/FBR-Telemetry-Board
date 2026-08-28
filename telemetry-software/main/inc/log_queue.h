@@ -1,6 +1,7 @@
 #pragma once
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
+#include <stdint.h>
 
 #define LOG_LINE_MAX 128
 #define LOG_QUEUE_DEPTH 32     // how many lines can back up before drops
@@ -12,6 +13,7 @@ typedef enum {
 } log_source_t;
 
 typedef struct {
+    uint32_t time;
     log_source_t source;
     char text[LOG_LINE_MAX];
 } log_item_t;

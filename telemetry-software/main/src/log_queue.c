@@ -2,6 +2,7 @@
 #include "log_queue.h"
 #include <string.h>
 #include "esp_log.h"
+#include "esp_timer.h"
 
 
 QueueHandle_t g_log_queue = NULL;
@@ -20,6 +21,7 @@ bool log_queue_push(log_source_t src, const char *line) {
     if (!g_log_queue) return false;
     log_item_t item;
     item.source = src;
+    item.time = (uint32_t)(esp_timer_get_time() / 1000);   // ms since boot
     strncpy(item.text, line, LOG_LINE_MAX - 1);
     item.text[LOG_LINE_MAX - 1] = '\0';    // guarantee termination
     // 0 timeout: never block a sensor task waiting for queue space.

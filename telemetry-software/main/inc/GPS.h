@@ -13,6 +13,7 @@
 #define PA1010D_ADDR  0x10
 #define ACC_SIZE      512
 
-void gps_start(void);
+// Returns true if the PA1010D ACK'd its I2C probe (i.e. GPS confirmed present).
+bool gps_start(void);
 
 #endif

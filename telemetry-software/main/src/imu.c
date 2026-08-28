@@ -45,7 +45,6 @@ static void imu_task(void *arg) {
             }
 
             snprintf(line, sizeof(line), "%d,%d,%d,%d,%d,%d", ax, ay, az, gx, gy, gz);
-            ESP_LOGD(TAG, "IMU online");
             ESP_LOGD(TAG, "%s", line);
             log_queue_push(LOG_SRC_IMU, line);
         }
@@ -84,7 +83,4 @@ esp_err_t imu_start(void) {
     xTaskCreate(imu_task, "imu", 4096, NULL, 5, NULL);
     return ESP_OK;
 }
-
-
-
 

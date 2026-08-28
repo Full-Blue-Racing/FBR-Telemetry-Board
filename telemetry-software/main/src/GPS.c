@@ -78,7 +78,6 @@ void process_line(char *line) {
     // size_t l0 = strlen(fields[0]);
     // if (l0 < 3) return;
     if (strncmp(line + 3, "RMC", 3) == 0 || strncmp(line + 3, "GGA", 3) == 0){
-        ESP_LOGD(TAG, "GPS sensor online");
         ESP_LOGD(TAG, "%s", line);
         log_queue_push(LOG_SRC_GPS, line);
     }
@@ -117,10 +116,11 @@ void gps_task(void *arg) {
 
 
 
-void gps_start(void){
+bool gps_start(void){
     bus = i2c_bus_get_handle();
         // Scan equivalent: probe returns ESP_OK if 0x10 ACKs.
-    if (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK)
+    bool found = (i2c_master_probe(bus, PA1010D_ADDR, pdMS_TO_TICKS(100)) == ESP_OK);
+    if (found)
         ESP_LOGI(TAG, "PA1010D found at 0x10");
     else
         ESP_LOGE(TAG, "no ACK at 0x10 - check wiring");
@@ -135,8 +135,9 @@ void gps_start(void){
     esp_err_t ret = i2c_master_bus_add_device(bus, &dev_cfg, &s_gps);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "add_device failed: %s", esp_err_to_name(ret));
-        return;
+        return false;
     }
 
     xTaskCreate(gps_task, "gps", 4096, NULL, 5, NULL);
+    return found;
 }

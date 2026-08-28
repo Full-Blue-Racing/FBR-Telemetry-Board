@@ -1,6 +1,7 @@
 #include "console.h"
 #include "sd_log.h"
 
+#include <ctype.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
@@ -22,6 +23,18 @@ static bool build_path(const char *name, char *out, size_t out_sz) {
     return true;
 }
 
+// Guards against a corrupted/partially-written directory entry (e.g. left behind
+// by a reset before a new file's entry was ever fsync'd) printing raw garbage
+// bytes to the console - which idf_monitor's decode-failure heuristic chokes on.
+static bool clean_name(const char *name, size_t max_len) {
+    size_t len = strnlen(name, max_len);
+    if (len == 0 || len == max_len) return false;   // empty, or no nul terminator within bounds
+    for (size_t i = 0; i < len; i++) {
+        if (!isprint((unsigned char)name[i])) return false;
+    }
+    return true;
+}
+
 static int cmd_ls(int argc, char **argv) {
     DIR *d = opendir(MOUNT_POINT);
     if (!d) {
@@ -30,7 +43,12 @@ static int cmd_ls(int argc, char **argv) {
     }
     struct dirent *e;
     char path[280];
+    int skipped = 0;
     while ((e = readdir(d)) != NULL) {
+        if (!clean_name(e->d_name, sizeof(e->d_name))) {
+            skipped++;
+            continue;
+        }
         struct stat st;
         snprintf(path, sizeof(path), MOUNT_POINT "/%s", e->d_name);
         if (stat(path, &st) == 0) {
@@ -40,6 +58,9 @@ static int cmd_ls(int argc, char **argv) {
         }
     }
     closedir(d);
+    if (skipped) {
+        printf("(skipped %d entr%s with unreadable names)\n", skipped, skipped == 1 ? "y" : "ies");
+    }
     return 0;
 }
 
@@ -101,8 +122,8 @@ static int cmd_verbose(int argc, char **argv) {
         return 1;
     }
     esp_log_level_t level = (strcmp(argv[1], "on") == 0) ? ESP_LOG_DEBUG : ESP_LOG_INFO;
-    esp_log_level_set("GPS", level);
-    esp_log_level_set("IMU", level);
+    esp_log_level_set("gps", level);   // must match the TAG string used in GPS.c
+    esp_log_level_set("imu", level);   // must match the TAG string used in imu.c
     esp_log_level_set("sd", level);
     printf("verbose %s\n", argv[1]);
     return 0;

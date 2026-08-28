@@ -5,6 +5,7 @@
 #include "log_queue.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include <inttypes.h>
 
 static const char *TAG = "sd";
 static FILE *s_logf = NULL; //flash buffer
@@ -121,8 +122,8 @@ static void logger_task(void *arg) {
             UBaseType_t waiting = uxQueueMessagesWaiting(g_log_queue);
             ESP_LOGD(TAG, "logged (%u still queued)", (unsigned)waiting);
             
-            char out[LOG_LINE_MAX + 8];
-            snprintf(out, sizeof(out), "%s,%s", src_tag(item.source), item.text);
+            char out[LOG_LINE_MAX + 32];
+            snprintf(out, sizeof(out), "%" PRIu32 ",%s,%s", item.time, src_tag(item.source), item.text);
             sd_log_line(out);
         }
     }
