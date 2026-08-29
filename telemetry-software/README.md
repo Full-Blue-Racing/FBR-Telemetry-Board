@@ -1,53 +1,40 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-H21 | ESP32-H4 | ESP32-P4 | ESP32-S2 | ESP32-S3 | ESP32-S31 | Linux |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | --------- | -------- | -------- | -------- | -------- | --------- | ----- |
-
-# Hello World Example
-
-Starts a FreeRTOS task to print "Hello World".
-
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
-
-## How to use example
-
-Follow detailed instructions provided specifically for this example.
-
-Select the instructions depending on Espressif chip installed on your development board:
-
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
+# Status LED
+The red onboard LED indicates ESP32 is powered. 
+Another onboard RGB LED indicates sensor status:
+- A green led that's always on: both GPS and IMU booted and connection established over i2c. 
+- A purple led that's always on: IMU failed to initialise
+- A yellow led that's always on: GPS failed to initialise
+A green, flashing LED on the GPS sensor itself indicates it has successully obtained a fix. 
 
 
-## Example folder contents
+# Detailed status logs, programming and logged data extraction
+The software is written using ESP-IDF. It is recommended to install ESP-IDF. Either start from the [VSCode extension](https://docs.espressif.com/projects/vscode-esp-idf-extension/en/latest/installation.html) or go to [ESP-IDF github](https://github.com/espressif/esp-idf) directly. 
 
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
+## A few setup steps before building and compiling: 
+- `source ${IDF_PATH}/export.sh`
+- If the above doesn't work, do `source /your-path-to-esp-idf-root/export.sh`
+- `set-target esp32s3`
+- `idf.py menuconfig` -> select `Serial Flasher config` and set `Flash size` to 8 MB.
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
 
-Below is short explanation of remaining files in the project folder.
+## Build, compile and monitor
+for a quick check (nothing important already logged in flash and not retreived)
+- `idf.py build flash monitor` auto detects your port and flashes the board. Attaching a new monitor (without `no-reset`) results in a reset of the chip. A bunch of status logs will be printed, it actually tells you which usb-serial port is being used, the status of SD card/flash FAT logging system, IMU and GPS. 
 
-```
-├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
-│   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
-```
 
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
+## Access logged data 
+A new datalog file is opened and written to every time the board reboots/resets. It also moves to a new file once a logging session exceeds one hour. 
+- `idf.py -p /your-usb-serial-port monitor --no-reset` to find out which usb serial port is in use by the esp32, run `ls /dev/tty.* /dev/cu.*` (macOS) or `[System.IO.Ports.SerialPort]::GetPortNames()` (Windows powershell)
+- This command attaches a moniotr to the serial port but does NOT reset/reboot the chip. 
+- You should then see a console. type `help` for the short list of commands available, including listing files logged and their sizes, stream file content, removing a file etc. 
+- To extract data onto your local PC directory, press `control+]` to exit monitor. Then in terminal, run `python tools/pull_log.py --port /YOUR-USB-SERIAL-PORT --file DATALOG-TO-BE-EXTRACTED.txt --out ~/YOUR-DESTINATION-DIRECTORY/YOUR-FILENAME.txt`
 
-## Troubleshooting
+- **EXTRACT DATA ONTO YOUR LOCAL PC DIRECTORY FREQUENTLY**. Unfortunately data logged in flash FAT system is not as safely protected from power brown-outs and loss-of-power. This is because if a flash sector erase is triggered and there is a power-off after the erase but before the sector could be written to, the data temporarily copied into RAM would be lost. This would result in invlaid data. It's quite unlikely happen for normal power resets/reboot/monitor but DO NOT FLASH new program if there is meaningful logs not yet extracted. 
 
-* Program upload failure
+- **CLEAN UP AFTER YOU"VE EXTRACTED EVERYTHING** 
+A `idf.py erase-flash` would do. You need to reflash after that. 
 
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
 
-## Technical support and feedback
 
-Please use the following feedback channels:
 
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
 
-We will get back to you as soon as possible.
